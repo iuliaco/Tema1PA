@@ -53,14 +53,21 @@ public class Crypto {
                 e.printStackTrace();
             }
         }
-        list.sort( new Comparator<Components>() {
+        list.sort(new Comparator<Components>() {
             @Override
             public int compare(Components o1, Components o2) {
                 if (o1.monede > o2.monede)
                     return 1;
-                else
+                else if (o1.monede < o2.monede) {
                     return -1;
-
+                } else {
+                    if (o1.pret > o2.pret)
+                        return 1;
+                    else if (o1.pret < o2.pret) {
+                        return -1;
+                    } else
+                        return 0;
+                }
             }
         });
 //        System.out.println(list);
