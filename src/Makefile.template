@@ -13,14 +13,20 @@
 
 # nume necesar (build)
 build:
-	# TODO
+javac *.java
 
-run-p1:      # nume necesar
+run-p1:
+java Crypto
 
 run-p2:      # nume necesar
+java Stocks
 
 run-p3:      # nume necesar
+java Valley
 
 run-p4:      # nume necesar
+java Ridge
 
-clean:		 # nume necesar
+clean:
+rm -rf *.class
+

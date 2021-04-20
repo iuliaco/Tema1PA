@@ -81,13 +81,13 @@ public class Crypto {
         int baniConsumati = 0;
         Components componenta = list.get(0);
         int monedeFinal = componenta.monede;
-        while (baniConsumati < bani) {
+        while (baniConsumati <= bani) {
             int monedeRef = componenta.monede;
             baniConsumati = baniConsumati + componenta.pret;
             if (baniConsumati > bani)
                 break;
             componenta.monede++;
-            for (int i = 1; i < calculatoare && baniConsumati < bani; i++) {
+            for (int i = 1; i < calculatoare && baniConsumati <= bani; i++) {
                 if (list.get(i).monede < componenta.monede) {
                     list.get(i).monede += 1;
                     baniConsumati += list.get(i).pret;
