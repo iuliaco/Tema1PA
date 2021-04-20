@@ -2,6 +2,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.StringTokenizer;
 
 class Components {
     public int monede;
@@ -34,7 +35,7 @@ public class Crypto {
             int capacitate;
             int pret;
             for (int i = 0; i < calculatoare; i++) {
-                StringTokenizer string = new StringTokenizer(br.readLine());
+                StringTokenizer string = new StringTokenizer(reader.readLine());
                 capacitate = Integer.parseInt(string.nextToken());
                 pret = Integer.parseInt(string.nextToken());
                 list.add(new Components(capacitate, pret));
