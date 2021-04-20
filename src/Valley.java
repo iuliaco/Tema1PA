@@ -27,7 +27,7 @@ public class Valley {
             inaltMin = Integer.parseInt(fLine[0]);
             for (int i = 1; i < nr; i++) {
                 list.add(Integer.parseInt(fLine[i]));
-                if(inaltMin > Integer.parseInt(fLine[i])) {
+                if (inaltMin > Integer.parseInt(fLine[i])) {
                     inaltMin = Integer.parseInt(fLine[i]);
                     ind = i;
                 }
@@ -53,22 +53,21 @@ public class Valley {
         biggestR = list.get(nr - 1);
         Long total = Long.valueOf(0);
         if (ind == 0)
-            ind  = 1;
+            ind = 1;
         if (ind == (nr - 1))
             ind = nr - 2;
         for (int i = 0; i <= ind; i++) {
             Integer inaltCur = list.get(i);
-            if( inaltCur > biggestL) {
+            if (inaltCur > biggestL) {
                 total += inaltCur - biggestL;
                 list.set(i, biggestL);
-            }
-            else
+            } else
                 biggestL = inaltCur;
         }
         System.out.println(nr);
-        for (int i = nr - 1; i >= ind ; i--) {
+        for (int i = nr - 1; i >= ind; i--) {
             Integer inaltCur = list.get(i);
-            if( inaltCur > biggestR) {
+            if (inaltCur > biggestR) {
                 total += inaltCur - biggestR;
                 list.set(i, biggestR);
             } else

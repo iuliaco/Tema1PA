@@ -72,15 +72,15 @@ public class Stocks {
         for (int i = 1; i <= actiuni; i++) {
             for (int j = 0; j <= bani; j++) {
                 for (int k = 0; k <= loss; k++) {
-                  dp[i][j][k] = dp[i-1][j][k];
+                    dp[i][j][k] = dp[i - 1][j][k];
 
-                  Action actiune = list.get(i - 1);
-                  if((j - actiune.currValue >= 0) && (k - (actiune.currValue - actiune.minValue) >= 0)) {
-                    int aux_dp = dp[i-1][j-actiune.currValue][k - (actiune.currValue - actiune.minValue)] +
-                            (actiune.maxValue - actiune.currValue);
+                    Action actiune = list.get(i - 1);
+                    if ((j - actiune.currValue >= 0) && (k - (actiune.currValue - actiune.minValue) >= 0)) {
+                        int aux_dp = dp[i - 1][j - actiune.currValue][k - (actiune.currValue - actiune.minValue)] +
+                                (actiune.maxValue - actiune.currValue);
 
-                    dp[i][j][k] = Math.max(dp[i][j][k], aux_dp);
-                  }
+                        dp[i][j][k] = Math.max(dp[i][j][k], aux_dp);
+                    }
                 }
             }
         }

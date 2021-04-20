@@ -20,7 +20,7 @@ public class Crypto {
 
     public static void main(String[] args) throws IOException {
         List<Components> list = new ArrayList<Components>();
-        File file = new File("crypto.in");
+        File file = new File("src/1-crypto.in");
         BufferedReader reader = null;
         int calculatoare = 0;
         int bani = 0;
@@ -69,20 +69,18 @@ public class Crypto {
                 }
             }
         });
-//        System.out.println(list);
 
         int baniConsumati = 0;
         Components componenta = list.get(0);
-        int monedeFinal = componenta.monede;
         int i = 1;
         int updatePartial = componenta.pret;
         int monedeFinale = componenta.monede;
         int monedeViitorUpdate = list.get(i).monede;
-        while(baniConsumati <= bani && i != calculatoare ) {
-            if(monedeFinale == monedeViitorUpdate) {
+        while (baniConsumati <= bani) {
+            if (monedeFinale == monedeViitorUpdate) {
                 updatePartial = updatePartial + list.get(i).pret;
                 i++;
-                if(i == calculatoare - 1)
+                if (i == calculatoare)
                     monedeViitorUpdate = 999999999;
                 else
                     monedeViitorUpdate = list.get(i).monede;
@@ -92,7 +90,7 @@ public class Crypto {
             }
         }
 
-        if(baniConsumati > bani)
+        if (baniConsumati > bani)
             monedeFinale--;
         System.out.println(monedeFinale);
         FileWriter myWriter = new FileWriter("crypto.out");

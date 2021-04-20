@@ -54,60 +54,60 @@ public class Ridge {
                 e.printStackTrace();
             }
         }
-        long [][] dp = new long[copaci][3];
+        long[][] dp = new long[copaci][3];
         dp[0][0] = 0;
         dp[0][1] = list.get(0).pret;
         dp[0][2] = list.get(0).pret * 2;
         for (int i = 1; i < copaci; i++) {
-                long baza = Math.min(dp[i - 1][0], dp[i - 1][1]);
-                dp[i][0] = Math.min(baza, dp[i - 1][2]);
-                dp[i][1] = Math.min(baza, dp[i - 1][2]) + list.get(i).pret;
-                dp[i][2] = Math.min(baza, dp[i - 1][2]) + list.get(i).pret * 2;
-                if (list.get(i).inaltime == list.get(i-1).inaltime) {
-                    dp[i][0] = Math.min(dp[i - 1][1], dp[i - 1][2]);
-                    dp[i][1] = Math.min(dp[i - 1] [0], dp[i - 1][2] ) + list.get(i).pret;
-                    dp[i][2] = Math.min(dp[i - 1] [0], dp[i - 1][1] ) +  list.get(i).pret*2;
-                }
-
-                if (list.get(i).inaltime == list.get(i-1).inaltime + 1) {
-                    long aux = Math.min(dp[i - 1][1], dp[i - 1][0]);
-                    dp[i][0] = Math.min(aux, dp[i - 1][2]);
-                    dp[i][1] = Math.min(dp[i - 1][1], dp[i - 1][2] ) + list.get(i).pret;
-                    dp[i][2] = Math.min(dp[i - 1] [0], dp[i - 1][2] ) +  list.get(i).pret*2;
-                }
-
-
-                if (list.get(i).inaltime == list.get(i-1).inaltime + 2) {
-                    long aux = Math.min(dp[i - 1][1], dp[i - 1][0]);
-                    dp[i][0] = Math.min(aux, dp[i - 1][2]);
-                    dp[i][1] = Math.min(aux, dp[i - 1][2] ) + list.get(i).pret;
-                    dp[i][2] = Math.min(dp[i - 1] [1], dp[i - 1][2] ) +  list.get(i).pret*2;
-                }
-
-                if (list.get(i).inaltime == list.get(i-1).inaltime - 1) {
-                    long aux = Math.min(dp[i - 1][1], dp[i - 1][0]);
-                    dp[i][0] = Math.min( dp[i - 1][0], dp[i - 1][2]);
-                    dp[i][1] = Math.min( dp[i - 1][0], dp[i - 1][1] ) + list.get(i).pret;
-                    dp[i][2] = Math.min(aux , dp[i - 1][2] ) +  list.get(i).pret*2;
-                }
-
-                if (list.get(i).inaltime == list.get(i-1).inaltime - 2) {
-                    long aux = Math.min(dp[i - 1][1], dp[i - 1][0]);
-                    dp[i][0] = Math.min( dp[i - 1][0], dp[i - 1][1]);
-                    dp[i][1] = Math.min(aux, dp[i - 1][2] ) + list.get(i).pret;
-                    dp[i][2] = Math.min(aux , dp[i - 1][2] ) +  list.get(i).pret*2;
-                }
-
-
-                if(list.get(i).inaltime == 1) {
-                    dp[i][2] = Long.MAX_VALUE;
-                }
-                if(list.get(i).inaltime == 0) {
-                    dp[i][2] = Long.MAX_VALUE;
-                    dp[i][1] = Long.MAX_VALUE;
-                }
-
+            long baza = Math.min(dp[i - 1][0], dp[i - 1][1]);
+            dp[i][0] = Math.min(baza, dp[i - 1][2]);
+            dp[i][1] = Math.min(baza, dp[i - 1][2]) + list.get(i).pret;
+            dp[i][2] = Math.min(baza, dp[i - 1][2]) + list.get(i).pret * 2;
+            if (list.get(i).inaltime == list.get(i - 1).inaltime) {
+                dp[i][0] = Math.min(dp[i - 1][1], dp[i - 1][2]);
+                dp[i][1] = Math.min(dp[i - 1][0], dp[i - 1][2]) + list.get(i).pret;
+                dp[i][2] = Math.min(dp[i - 1][0], dp[i - 1][1]) + list.get(i).pret * 2;
             }
+
+            if (list.get(i).inaltime == list.get(i - 1).inaltime + 1) {
+                long aux = Math.min(dp[i - 1][1], dp[i - 1][0]);
+                dp[i][0] = Math.min(aux, dp[i - 1][2]);
+                dp[i][1] = Math.min(dp[i - 1][1], dp[i - 1][2]) + list.get(i).pret;
+                dp[i][2] = Math.min(dp[i - 1][0], dp[i - 1][2]) + list.get(i).pret * 2;
+            }
+
+
+            if (list.get(i).inaltime == list.get(i - 1).inaltime + 2) {
+                long aux = Math.min(dp[i - 1][1], dp[i - 1][0]);
+                dp[i][0] = Math.min(aux, dp[i - 1][2]);
+                dp[i][1] = Math.min(aux, dp[i - 1][2]) + list.get(i).pret;
+                dp[i][2] = Math.min(dp[i - 1][1], dp[i - 1][2]) + list.get(i).pret * 2;
+            }
+
+            if (list.get(i).inaltime == list.get(i - 1).inaltime - 1) {
+                long aux = Math.min(dp[i - 1][1], dp[i - 1][0]);
+                dp[i][0] = Math.min(dp[i - 1][0], dp[i - 1][2]);
+                dp[i][1] = Math.min(dp[i - 1][0], dp[i - 1][1]) + list.get(i).pret;
+                dp[i][2] = Math.min(aux, dp[i - 1][2]) + list.get(i).pret * 2;
+            }
+
+            if (list.get(i).inaltime == list.get(i - 1).inaltime - 2) {
+                long aux = Math.min(dp[i - 1][1], dp[i - 1][0]);
+                dp[i][0] = Math.min(dp[i - 1][0], dp[i - 1][1]);
+                dp[i][1] = Math.min(aux, dp[i - 1][2]) + list.get(i).pret;
+                dp[i][2] = Math.min(aux, dp[i - 1][2]) + list.get(i).pret * 2;
+            }
+
+
+            if (list.get(i).inaltime == 1) {
+                dp[i][2] = Long.MAX_VALUE;
+            }
+            if (list.get(i).inaltime == 0) {
+                dp[i][2] = Long.MAX_VALUE;
+                dp[i][1] = Long.MAX_VALUE;
+            }
+
+        }
         long aux = Math.min(dp[copaci - 1][1], dp[copaci - 1][2]);
         System.out.println(Math.min(dp[copaci - 1][0], aux));
         FileWriter myWriter = new FileWriter("ridge.out");
