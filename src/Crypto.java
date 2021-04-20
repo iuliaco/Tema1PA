@@ -34,10 +34,9 @@ public class Crypto {
             int capacitate;
             int pret;
             for (int i = 0; i < calculatoare; i++) {
-                text = reader.readLine();
-                fLine = text.split(" ");
-                capacitate = Integer.parseInt(fLine[0]);
-                pret = Integer.parseInt(fLine[1]);
+                StringTokenizer string = new StringTokenizer(br.readLine());
+                capacitate = Integer.parseInt(string.nextToken());
+                pret = Integer.parseInt(string.nextToken());
                 list.add(new Components(capacitate, pret));
             }
 
@@ -78,13 +77,14 @@ public class Crypto {
         int updatePartial = componenta.pret;
         int monedeFinale = componenta.monede;
         int monedeViitorUpdate = list.get(i).monede;
-        while(baniConsumati <= bani) {
+        while(baniConsumati <= bani && i != calculatoare ) {
             if(monedeFinale == monedeViitorUpdate) {
                 updatePartial = updatePartial + list.get(i).pret;
-                baniConsumati += updatePartial;
                 i++;
-                monedeFinale++;
-                monedeViitorUpdate = list.get(i).monede;
+                if(i == calculatoare - 1)
+                    monedeViitorUpdate = 999999999;
+                else
+                    monedeViitorUpdate = list.get(i).monede;
             } else {
                 baniConsumati += updatePartial;
                 monedeFinale++;
