@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
@@ -12,13 +13,6 @@ class Components {
         this.pret = pret;
     }
 
-    @Override
-    public String toString() {
-        return "Components{" +
-                "monede=" + monede +
-                ", pret=" + pret +
-                '}';
-    }
 }
 
 
@@ -59,21 +53,14 @@ public class Crypto {
                 e.printStackTrace();
             }
         }
-        list.sort(new Comparator<Components>() {
+        list.sort( new Comparator<Components>() {
             @Override
             public int compare(Components o1, Components o2) {
                 if (o1.monede > o2.monede)
                     return 1;
-                else if (o1.monede < o2.monede) {
+                else
                     return -1;
-                } else {
-                    if (o1.pret > o2.pret)
-                        return 1;
-                    else if (o1.pret < o2.pret) {
-                        return -1;
-                    } else
-                        return 0;
-                }
+
             }
         });
 //        System.out.println(list);
