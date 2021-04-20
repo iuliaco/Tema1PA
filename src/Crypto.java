@@ -1,6 +1,5 @@
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
@@ -75,27 +74,28 @@ public class Crypto {
         int baniConsumati = 0;
         Components componenta = list.get(0);
         int monedeFinal = componenta.monede;
-        while (baniConsumati <= bani) {
-            int monedeRef = componenta.monede;
-            baniConsumati = baniConsumati + componenta.pret;
-            if (baniConsumati > bani)
-                break;
-            componenta.monede++;
-            for (int i = 1; i < calculatoare && baniConsumati <= bani; i++) {
-                if (list.get(i).monede < componenta.monede) {
-                    list.get(i).monede += 1;
-                    baniConsumati += list.get(i).pret;
-                    if(i == (calculatoare - 1) && baniConsumati < bani)
-                        monedeFinal += 1;
-                } else {
-                    monedeFinal += 1;
-                    break;
-                }
+        int i = 1;
+        int updatePartial = componenta.pret;
+        int monedeFinale = componenta.monede;
+        int monedeViitorUpdate = list.get(i).monede;
+        while(baniConsumati <= bani) {
+            if(monedeFinale == monedeViitorUpdate) {
+                updatePartial = updatePartial + list.get(i).pret;
+                baniConsumati += updatePartial;
+                i++;
+                monedeFinale++;
+                monedeViitorUpdate = list.get(i).monede;
+            } else {
+                baniConsumati += updatePartial;
+                monedeFinale++;
             }
         }
-        System.out.println(monedeFinal);
+
+        if(baniConsumati > bani)
+            monedeFinale--;
+        System.out.println(monedeFinale);
         FileWriter myWriter = new FileWriter("crypto.out");
-        myWriter.write(String.valueOf(monedeFinal));
+        myWriter.write(String.valueOf(monedeFinale));
         myWriter.close();
 
     }
