@@ -1,15 +1,15 @@
 import java.io.*;
 
 public class Trigigel {
-    public static void multiply_matrix(int[][] A, int kmax, int[][] B, int[][] C, int mod) {
-        int[][] tmp = new int[kmax][kmax];
+    public static void multiply_matrix(long[][] A, int kmax, long[][] B, long[][] C, long mod) {
+        long[][] tmp = new long[kmax][kmax];
         for (int i = 0; i < kmax; i++) {
             for (int j = 0; j < kmax; j++) {
                 Long sum = Long.valueOf(0);
                 for (int k = 0; k < kmax; k++) {
                     sum += 1L * A[i][k] * B[k][j];
                 }
-                tmp[i][j] = (int) (sum % mod);
+                tmp[i][j] = (long) (sum % mod);
             }
         }
         for (int i = 0; i < kmax; i++) {
@@ -20,8 +20,8 @@ public class Trigigel {
         }
     }
 
-    public static void power_matrix(int[][] C, Long p, int[][] R, int kmax, int mod) {
-        int[][] tmp = new int[kmax][kmax];
+    public static void power_matrix(long[][] C, Long p, long[][] R, int kmax, long mod) {
+        long[][] tmp = new long[kmax][kmax];
         for (int i = 0; i < kmax; i++) {
             for (int j = 0; j < kmax; j++) {
                 tmp[i][j] = (i == j) ? 1 : 0;
@@ -43,7 +43,7 @@ public class Trigigel {
         multiply_matrix(C, kmax, tmp, R, mod);
     }
 
-    public static int trig(Long n, int mod) {
+    public static long trig(Long n, long mod) {
         if (n == 0) {
             return 1;
         }
@@ -60,7 +60,7 @@ public class Trigigel {
             return 10;
         }
         int kmax = 4;
-        int[][] C = {{1, 0, 0, 1},
+        long[][] C = {{1, 0, 0, 1},
                 {0, 0, 0, 1},
                 {0, 1, 0, 0},
                 {0, 0, 1, 1}};
@@ -68,7 +68,7 @@ public class Trigigel {
 
         // sol = S_4 * C = dp[n] (se află pe ultima poziție din S_n,
         // deci voi folosi ultima coloană din C)
-        int sol = (1 * C[0][1] + 1 * C[0][2] + 1 * C[0][3]) % mod;
+        Long sol = (1 * C[0][1] + 1 * C[0][2] + 1 * C[0][3]) % mod;
         System.out.println("sol " + sol + " C1 " + C[0][1] + " C2 " + C[0][2] + " C3 " + C[0][3] + " C[3][3] " + C[3][3]);
         return sol;
 
@@ -95,7 +95,7 @@ public class Trigigel {
                 e.printStackTrace();
             }
         }
-        int mod = 1000000007;
+        long mod = 1000000007;
         System.out.println(trig(nr, mod));
         FileWriter myWriter = new FileWriter("trigigel.out");
         myWriter.write(String.valueOf(trig(nr, mod)));
